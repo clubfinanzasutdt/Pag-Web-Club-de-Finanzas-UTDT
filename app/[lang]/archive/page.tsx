@@ -5,13 +5,12 @@ import { Locale } from "@/lib/types";
 import { events } from "@/content/events";
 
 type PageProps = {
-  params: Promise<{
-    lang: Locale;
-  }>;
+  params: Promise<{ lang: string }>;
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { lang } = await params;
+  const { lang: langParam } = await params;
+  const lang = langParam as Locale;
   const dictionary = getDictionary(lang);
 
   return {
@@ -21,7 +20,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function ArchivePage({ params }: PageProps) {
-  const { lang } = await params;
+  const { lang: langParam } = await params;
+  const lang = langParam as Locale;
   const dictionary = getDictionary(lang);
 
   return (
