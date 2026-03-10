@@ -30,7 +30,6 @@ export default function Navbar({ lang, dictionary }: NavbarProps) {
 
   const navItems = [
     { href: "/", label: dictionary.nav.home },
-    { href: "/about", label: dictionary.nav.about },
     { href: "/activities", label: dictionary.nav.activities },
     { href: "/archive", label: dictionary.nav.archive },
     { href: "/team", label: dictionary.nav.team }

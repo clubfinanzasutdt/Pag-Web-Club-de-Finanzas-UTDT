@@ -26,6 +26,8 @@ export default async function TeamPage({ params }: PageProps) {
   const { lang: langParam } = await params;
   const lang = langParam as Locale;
   const dictionary = getDictionary(lang);
+  const leads = teamMembers.filter((member) => member.tier === "lead");
+  const directors = teamMembers.filter((member) => member.tier !== "lead");
 
   return (
     <div className="section-shell">
@@ -38,8 +40,18 @@ export default async function TeamPage({ params }: PageProps) {
           <h2 className="text-2xl font-semibold text-white">
             {dictionary.teamPage.boardTitle}
           </h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-            {teamMembers.map((member) => (
+          <div className="mt-8 grid gap-6 lg:grid-cols-2">
+            {leads.map((member) => (
+              <TeamMemberCard
+                key={member.id}
+                member={member}
+                lang={lang}
+                size="lead"
+              />
+            ))}
+          </div>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            {directors.map((member) => (
               <TeamMemberCard key={member.id} member={member} lang={lang} />
             ))}
           </div>

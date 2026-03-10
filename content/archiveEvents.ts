@@ -14,6 +14,13 @@ type Override = {
 
 const bi = (text: string): LocaleString => ({ es: text, en: text });
 
+const localizedTitleOverrides: Record<string, LocaleString> = {
+  "2025-05-10-ariel-sbdar": {
+    es: "Charla con Ariel Sbdar: CEO de Cocos Capital",
+    en: "Fireside chat with Ariel Sbdar: CEO of Cocos Capital"
+  }
+};
+
 const archiveSeeds: readonly Seed[] = [
   [
     "2025-11-18-federico-alcalde-bessia",
@@ -282,13 +289,6 @@ const archiveSeeds: readonly Seed[] = [
     "Primer evento del segundo semestre: charla informativa con Balanz Capital a cargo de Milena Di Napoli sobre emisiones de obligaciones negociables."
   ],
   [
-    "2023-08-17-quotes-ramiro-marra",
-    "2023-08-17",
-    94,
-    "charla",
-    "Quotes y recap de la charla con Ramiro Marra."
-  ],
-  [
     "2023-06-09-ramiro-marra",
     "2023-06-09",
     97,
@@ -296,32 +296,11 @@ const archiveSeeds: readonly Seed[] = [
     "Charla con Ramiro Marra sobre mercado financiero argentino y su impacto en un año electoral."
   ],
   [
-    "2023-06-02-gabriel-martino",
-    "2023-06-02",
-    99,
-    "charla",
-    "Mensajes clave después de la charla con Gabriel Martino."
-  ],
-  [
     "2023-05-31-gerardo-hsbc",
     "2023-05-31",
     103,
     "charla",
     "Mano a mano con Gerardo, ex CEO de HSBC, para conversar sobre el día a día de alguien que trabaja y emprende en finanzas."
-  ],
-  [
-    "2023-05-23-isabel-botta",
-    "2023-05-23",
-    105,
-    "charla",
-    "Key takeaways de la charla con Isabel Botta, Head Sales Trader en Balanz Capital."
-  ],
-  [
-    "2023-04-17-julio-fermo-maria-lopez-isnardi",
-    "2023-04-17",
-    108,
-    "charla",
-    "Cierre del año con Julio Fermo y María Eugenia López Isnardi, resumido en un post de key takeaways."
   ],
   [
     "2022-11-16-cierre-de-ano",
@@ -336,13 +315,6 @@ const archiveSeeds: readonly Seed[] = [
     115,
     "educacion",
     "Taller de análisis técnico con Matías Minnini, especialista de Balanz."
-  ],
-  [
-    "2022-10-26-ignacio-hecquet-recap",
-    "2022-10-26",
-    117,
-    "charla",
-    "Recap de la charla con Ignacio Hecquet, con un repaso de lo que dejó el encuentro."
   ],
   [
     "2022-10-24-caso-nubank-ipo",
@@ -650,7 +622,6 @@ const overrides: Record<string, Override> = {
     location: "UTDT"
   },
   "2025-05-10-ariel-sbdar": {
-    title: "Primera charla del año con Ariel Sbdar",
     speaker: "Ariel Sbdar",
     speakerRole: "CEO",
     company: "Cocos Capital",
@@ -788,19 +759,10 @@ const overrides: Record<string, Override> = {
     company: "Balanz Capital",
     location: "UTDT"
   },
-  "2023-08-17-quotes-ramiro-marra": {
-    title: "Recap de la charla con Ramiro Marra",
-    speaker: "Ramiro Marra",
-    company: "La Libertad Avanza"
-  },
   "2023-06-09-ramiro-marra": {
     speaker: "Ramiro Marra",
     company: "La Libertad Avanza",
     location: "UTDT"
-  },
-  "2023-06-02-gabriel-martino": {
-    title: "Mensajes clave de la charla con Gabriel Martino",
-    speaker: "Gabriel Martino"
   },
   "2023-05-31-gerardo-hsbc": {
     title: "Mano a mano con el ex CEO de HSBC",
@@ -808,25 +770,10 @@ const overrides: Record<string, Override> = {
     company: "HSBC",
     location: "UTDT"
   },
-  "2023-05-23-isabel-botta": {
-    speaker: "Isabel Botta",
-    speakerRole: "Head Sales Trader",
-    company: "Balanz Capital"
-  },
-  "2023-04-17-julio-fermo-maria-lopez-isnardi": {
-    title: "Cierre del año con Julio Fermo y María Eugenia López Isnardi",
-    speaker: "Julio Fermo y María Eugenia López Isnardi",
-    company: "Maestría en Finanzas UTDT"
-  },
   "2022-11-11-matias-minnini": {
     speaker: "Matías Minnini",
     speakerRole: "Especialista",
     company: "Balanz"
-  },
-  "2022-10-26-ignacio-hecquet-recap": {
-    title: "Recap de la charla con Ignacio Hecquet",
-    speaker: "Ignacio Hecquet",
-    company: "EY"
   },
   "2022-10-24-caso-nubank-ipo": {
     title: "Caso Nubank y proceso de IPO",
@@ -1032,6 +979,110 @@ const titleFromCaption = (caption: string, type: ActivityType, company?: string,
   return caption.slice(0, 72).trim();
 };
 
+const translateTitleToEnglish = (
+  title: string,
+  type: ActivityType,
+  company?: string,
+  speaker?: string
+) => {
+  const exactMatches: Record<string, string> = {
+    "Educación Financiera para Todas": "Financial Education for All",
+    "El rol de las mujeres en el mundo financiero": "The role of women in finance",
+    "Innovación en el mercado de capitales argentino": "Innovation in Argentina's capital markets",
+    "Coyuntura macro y estrategias de inversión": "Macro outlook and investment strategies",
+    "Caso Nubank y proceso de IPO": "The Nubank case and IPO process",
+    "McGill International Portfolio Challenge": "McGill International Portfolio Challenge",
+    "Global Investment Research Challenge": "Global Investment Research Challenge",
+    "University Trading Challenge": "University Trading Challenge",
+    "Investment Banking Kick-Off": "Investment Banking Kick-Off",
+    "Python en finanzas": "Python in finance",
+    "Neurociencia e inteligencia artificial": "Neuroscience and artificial intelligence",
+    "Análisis fundamental y valuación de empresas": "Fundamental analysis and company valuation",
+    "Criptomonedas como asset class": "Cryptocurrencies as an asset class",
+    "Trampa de retorno y gestión del riesgo": "Return traps and risk management",
+    "Visita a Globant Tower": "Visit to Globant Tower",
+    "Visita a Allaria y a la Bolsa de Comercio": "Visit to Allaria and the Buenos Aires Stock Exchange",
+    "Visita a las oficinas de Cocos": "Visit to Cocos Capital's offices",
+    "Martín Redrado en UTDT": "Martín Redrado at UTDT",
+    "Commodities agrícolas con Nicolás Merener": "Agricultural commodities with Nicolás Merener",
+    "Private Equity con Ignacio Noel": "Private equity with Ignacio Noel",
+    "Mercados y sales corporativos con Jorge Lonegro": "Markets and corporate sales with Jorge Lonegro",
+    "Competencia de inversiones con BYMALAB": "Investment competition with BYMALAB",
+    "Diego Pando: emprender y liderar en Argentina": "Diego Pando: entrepreneurship and leadership in Argentina",
+    "Charla con Alfonso Prat-Gay": "Fireside chat with Alfonso Prat-Gay",
+    "Charla con Claudio Zuchovicki": "Fireside chat with Claudio Zuchovicki",
+    "Postales de la charla con Santiago Bausili": "Highlights from the fireside chat with Santiago Bausili",
+    "Competir y negociar en la industria energética": "Competing and negotiating in the energy industry",
+    "Emisiones de ONs con Balanz": "Corporate bond issuance with Balanz",
+    "Charla con Luis Toto Caputo": "Fireside chat with Luis Toto Caputo",
+    "Mano a mano con el ex CEO de HSBC": "One-on-one with HSBC's former CEO",
+    "Portfolio management con Andrés Sicouri": "Portfolio management with Andrés Sicouri",
+    "Capacitación de futuros con Diego Baragaño": "Futures training with Diego Baragaño",
+    "Rentas fijas junto a Balanz": "Fixed income with Balanz",
+    "CEDEARs con Pablo Haro": "CEDEARs with Pablo Haro",
+    "Emprendedores ditellianos: Cocos y Glamit": "Di Tella entrepreneurs: Cocos and Glamit",
+    "Encuentro presencial con J.P. Morgan": "In-person event with J.P. Morgan",
+    "Primer evento presencial del año con Balanz": "First in-person event of the year with Balanz"
+  };
+
+  if (exactMatches[title]) {
+    return exactMatches[title];
+  }
+
+  const charlaMatch = title.match(/^Charla con (.+)$/i);
+  if (charlaMatch?.[1]) {
+    return `Fireside chat with ${charlaMatch[1]}`;
+  }
+
+  const encuentroMatch = title.match(/^Encuentro con (.+)$/i);
+  if (encuentroMatch?.[1]) {
+    return `Conversation with ${encuentroMatch[1]}`;
+  }
+
+  const conversacionMatch = title.match(/^Conversación con (.+)$/i);
+  if (conversacionMatch?.[1]) {
+    return `Conversation with ${conversacionMatch[1]}`;
+  }
+
+  const tallerMatch = title.match(/^Taller de (.+)$/i);
+  if (tallerMatch?.[1]) {
+    return `Workshop on ${tallerMatch[1]}`;
+  }
+
+  const visitaMatch = title.match(/^Visita a (.+)$/i);
+  if (visitaMatch?.[1]) {
+    return `Visit to ${visitaMatch[1]}`;
+  }
+
+  const competenciaMatch = title.match(/^Competencia con (.+)$/i);
+  if (competenciaMatch?.[1]) {
+    return `Competition with ${competenciaMatch[1]}`;
+  }
+
+  const sesionMatch = title.match(/^Sesión con (.+)$/i);
+  if (sesionMatch?.[1]) {
+    return `Session with ${sesionMatch[1]}`;
+  }
+
+  if (type === "charla" && speaker) {
+    return `Fireside chat with ${speaker}`;
+  }
+
+  if (type === "visita" && company) {
+    return `Visit to ${company}`;
+  }
+
+  if (type === "competencia" && company) {
+    return `Competition with ${company}`;
+  }
+
+  if (type === "educacion" && speaker) {
+    return `Session with ${speaker}`;
+  }
+
+  return title;
+};
+
 const cleanEntity = (value: string) =>
   value
     .replace(/@\S+/g, "")
@@ -1096,11 +1147,17 @@ export const archiveEvents: Activity[] = archiveSeeds.map(([id, date, page, type
   const speaker = override?.speaker ?? inferSpeaker(caption);
   const company = override?.company ?? inferCompany(caption);
   const title = override?.title ?? titleFromCaption(caption, type, company, speaker);
+  const localizedTitle = localizedTitleOverrides[id];
   const gallery = galleryForArchiveEvent(id);
 
   return {
     id,
-    title: bi(title),
+    title:
+      localizedTitle ??
+      ({
+        es: title,
+        en: translateTitleToEnglish(title, type, company, speaker)
+      } satisfies LocaleString),
     type,
     date,
     description: archiveDescriptionOverrides[id] ?? bi(summarize(caption)),

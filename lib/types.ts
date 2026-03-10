@@ -37,6 +37,7 @@ export type TeamMember = {
   role: LocaleString;
   image: string;
   linkedin?: string;
+  tier?: "lead" | "director";
 };
 
 export type ClubLinks = {

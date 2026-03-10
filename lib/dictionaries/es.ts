@@ -1,8 +1,7 @@
 const esDictionary = {
   site: {
     name: "Di Tella Finance Club",
-    tagline:
-      "Plataforma estudiantil de finanzas de la Universidad Torcuato Di Tella."
+    tagline: "Club de Finanzas de la Universidad Torcuato Di Tella"
   },
   nav: {
     home: "Inicio",
@@ -74,31 +73,9 @@ const esDictionary = {
   },
   featured: {
     eyebrow: "Destacado",
-    heading: "Actividades recientes que reflejan el espíritu del club",
+    heading: "Actividades recientes",
     description:
-      "Una muestra del tipo de experiencias que buscamos construir: exposición, aprendizaje aplicado y vínculos reales con el mercado."
-  },
-  whyJoin: {
-    eyebrow: "Por qué sumarte",
-    heading: "Un club pensado para abrir puertas",
-    items: [
-      "Aprendé de personas que trabajan en finanzas",
-      "Accedé a actividades y redes de alto nivel",
-      "Sé parte de la comunidad de finanzas de UTDT"
-    ]
-  },
-  partners: {
-    heading: "Empresas y partners",
-    list: [
-      "BYMA",
-      "Banco Galicia",
-      "J.P. Morgan Argentina",
-      "TPCG",
-      "Balanz",
-      "Puente",
-      "BICE",
-      "YPF"
-    ]
+      "Las tres actividades más recientes del archivo del club, sincronizadas automáticamente desde el historial completo."
   },
   ctaFooter: {
     heading: "Sumate al club",

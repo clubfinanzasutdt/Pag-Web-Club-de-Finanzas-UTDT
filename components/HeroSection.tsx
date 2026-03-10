@@ -48,13 +48,6 @@ export default function HeroSection({ lang, dictionary }: HeroSectionProps) {
               </Link>
 
               <Link
-                href={localePath(lang, "/team")}
-                className="inline-flex items-center justify-center rounded-full border border-zinc-700 bg-zinc-900/80 px-6 py-3.5 text-sm font-semibold text-white hover:border-brandCyan/50 hover:bg-zinc-800"
-              >
-                {dictionary.common.joinClub}
-              </Link>
-
-              <Link
                 href={localePath(lang, "/archive?filter=upcoming")}
                 className="inline-flex items-center justify-center rounded-full border border-brandCyan/30 bg-brandCyan/10 px-6 py-3.5 text-sm font-semibold text-brandCyan hover:bg-brandCyan/15"
               >

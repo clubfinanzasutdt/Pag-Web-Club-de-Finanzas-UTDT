@@ -1,8 +1,7 @@
 const enDictionary = {
   site: {
     name: "Di Tella Finance Club",
-    tagline:
-      "The finance platform for students at Universidad Torcuato Di Tella."
+    tagline: "Finance Club for Torcuato Di Tella University"
   },
   nav: {
     home: "Home",
@@ -74,31 +73,9 @@ const enDictionary = {
   },
   featured: {
     eyebrow: "Featured",
-    heading: "Recent activities that capture the club’s identity",
+    heading: "Recent activities",
     description:
-      "A snapshot of the experiences we aim to create: exposure, applied learning, and real links with the market."
-  },
-  whyJoin: {
-    eyebrow: "Why join",
-    heading: "A club designed to open doors",
-    items: [
-      "Learn from people working in finance",
-      "Access high-quality events and networks",
-      "Be part of the UTDT finance community"
-    ]
-  },
-  partners: {
-    heading: "Companies & partners",
-    list: [
-      "BYMA",
-      "Banco Galicia",
-      "J.P. Morgan Argentina",
-      "TPCG",
-      "Balanz",
-      "Puente",
-      "BICE",
-      "YPF"
-    ]
+      "The three latest activities from the club archive, synced automatically from the full historical record."
   },
   ctaFooter: {
     heading: "Join the club",
@@ -217,7 +194,7 @@ const enDictionary = {
     builtWith: "Built with Next.js and Vercel"
   },
   activityTypes: {
-    charla: "Talk",
+    charla: "Fireside chat",
     visita: "Visit",
     educacion: "Education",
     competencia: "Competition",
