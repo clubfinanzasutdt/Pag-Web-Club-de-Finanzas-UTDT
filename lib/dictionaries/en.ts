@@ -31,7 +31,7 @@ const enDictionary = {
     past: "Past"
   },
   hero: {
-    headline: "Bringing the world of finance closer to Di Tella students",
+    headline: "Finance Club",
     subheadline:
       "Talks, office visits, competitions, educational content, and opportunities for students interested in markets, banking, investing, economics, and business."
   },

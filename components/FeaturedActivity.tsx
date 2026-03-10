@@ -11,10 +11,10 @@ type FeaturedActivityProps = {
 };
 
 const badgeStyles: Record<Activity["type"], string> = {
-  charla: "border-cyan-500/20 bg-cyan-500/10 text-cyan-300",
-  visita: "border-pink-500/20 bg-pink-500/10 text-pink-300",
-  educacion: "border-purple-500/20 bg-purple-500/10 text-purple-300",
-  competencia: "border-amber-500/20 bg-amber-500/10 text-amber-300",
+  charla: "border-brandCyan/25 bg-brandCyan/10 text-brandCyan",
+  visita: "border-brandMagenta/25 bg-brandMagenta/10 text-brandMagenta",
+  educacion: "border-brandOrange/25 bg-brandOrange/10 text-brandOrange",
+  competencia: "border-brandCyan/25 bg-brandCyan/10 text-brandCyan",
   research: "border-white/10 bg-white/5 text-zinc-300"
 };
 

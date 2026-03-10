@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Instagram, Linkedin, Mail, MessageCircle, Twitter } from "lucide-react";
 import { Dictionary } from "@/lib/dictionaries";
 import { clubLinks } from "@/content/links";
@@ -36,18 +37,28 @@ export default function Footer({ dictionary }: FooterProps) {
   ];
 
   return (
-    <footer className="relative z-10 border-t border-zinc-800 bg-black/60">
+    <footer className="relative z-10 border-t border-zinc-800/60 bg-black/80">
       <div className="site-container flex flex-col gap-8 py-10 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <div className="text-lg font-semibold text-white">
-            {dictionary.site.name}
+        <div className="flex items-start gap-4">
+          <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl">
+            <Image
+              src="/images/logo.png"
+              alt="DiTella Finance Club"
+              fill
+              className="object-cover"
+            />
           </div>
-          <p className="mt-2 max-w-xl text-sm leading-7 text-zinc-400">
-            {dictionary.footer.tagline}
-          </p>
-          <p className="mt-4 text-xs text-zinc-500">
-            © 2026 {dictionary.site.name}
-          </p>
+          <div>
+            <div className="text-lg font-bold text-white">
+              {dictionary.site.name}
+            </div>
+            <p className="mt-1 max-w-xl text-sm leading-7 text-zinc-400">
+              {dictionary.footer.tagline}
+            </p>
+            <p className="mt-3 text-xs text-zinc-500">
+              © 2026 {dictionary.site.name}
+            </p>
+          </div>
         </div>
 
         <div className="flex flex-col gap-4 lg:items-end">

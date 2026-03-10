@@ -31,7 +31,7 @@ const esDictionary = {
     past: "Pasados"
   },
   hero: {
-    headline: "Acercando el mundo de las finanzas a los alumnos de Di Tella",
+    headline: "Finance Club",
     subheadline:
       "Charlas, visitas a empresas, competencias, contenido educativo y oportunidades para estudiantes interesados en mercados, banca, inversiones, economía y negocios."
   },
