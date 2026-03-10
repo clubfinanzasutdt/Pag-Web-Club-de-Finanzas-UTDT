@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
@@ -9,6 +9,15 @@ import { Dictionary } from "@/lib/dictionaries";
 import { Locale } from "@/lib/types";
 import { localePath } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+
+function LanguageSwitcherFallback() {
+  return (
+    <div className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900 p-1 text-sm font-medium">
+      <span className="rounded-full px-3 py-1.5 bg-white text-black">ES</span>
+      <span className="rounded-full px-3 py-1.5 text-zinc-400">EN</span>
+    </div>
+  );
+}
 
 type NavbarProps = {
   lang: Locale;
@@ -78,7 +87,9 @@ export default function Navbar({ lang, dictionary }: NavbarProps) {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <LanguageSwitcher currentLang={lang} />
+          <Suspense fallback={<LanguageSwitcherFallback />}>
+            <LanguageSwitcher currentLang={lang} />
+          </Suspense>
           <Link
             href={localePath(lang, "/archive?filter=upcoming")}
             className="rounded-full bg-brandOrange px-4 py-2.5 text-sm font-semibold text-black hover:brightness-110 transition-all"
@@ -116,7 +127,9 @@ export default function Navbar({ lang, dictionary }: NavbarProps) {
             ))}
 
             <div className="pt-2">
-              <LanguageSwitcher currentLang={lang} />
+              <Suspense fallback={<LanguageSwitcherFallback />}>
+                <LanguageSwitcher currentLang={lang} />
+              </Suspense>
             </div>
 
             <Link

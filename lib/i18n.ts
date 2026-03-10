@@ -31,6 +31,7 @@ export function formatDate(date: string, lang: Locale) {
   return new Intl.DateTimeFormat(lang === "es" ? "es-AR" : "en-US", {
     day: "numeric",
     month: "long",
-    year: "numeric"
+    year: "numeric",
+    timeZone: "UTC"
   }).format(new Date(date));
 }
