@@ -8,13 +8,14 @@ import { teamMembers } from "@/content/team";
 import { clubLinks } from "@/content/links";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     lang: Locale;
-  };
+  }>;
 };
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const dictionary = getDictionary(params.lang);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const dictionary = getDictionary(lang);
 
   return {
     title: dictionary.meta.team.title,
@@ -22,8 +23,8 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function TeamPage({ params }: PageProps) {
-  const { lang } = params;
+export default async function TeamPage({ params }: PageProps) {
+  const { lang } = await params;
   const dictionary = getDictionary(lang);
 
   return (
@@ -55,7 +56,7 @@ export default function TeamPage({ params }: PageProps) {
                   key={step}
                   className="flex items-start gap-4 rounded-2xl border border-zinc-800 bg-zinc-950/50 p-4"
                 >
-                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amberAccent text-sm font-bold text-black">
+                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brandOrange text-sm font-bold text-black">
                     {index + 1}
                   </div>
                   <p className="text-sm leading-7 text-zinc-300">{step}</p>
@@ -65,7 +66,7 @@ export default function TeamPage({ params }: PageProps) {
 
             <a
               href={clubLinks.join}
-              className="mt-8 inline-flex items-center rounded-full bg-amberAccent px-5 py-3 text-sm font-semibold text-black hover:scale-[1.01] hover:bg-amber-400"
+              className="mt-8 inline-flex items-center rounded-full bg-brandOrange px-5 py-3 text-sm font-semibold text-black hover:brightness-110 transition-all"
             >
               {dictionary.teamPage.joinButton}
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -86,7 +87,7 @@ export default function TeamPage({ params }: PageProps) {
                 className="flex items-center justify-between rounded-2xl border border-zinc-800 bg-zinc-950/50 px-4 py-4 text-sm font-medium text-white hover:border-zinc-700 hover:bg-zinc-900"
               >
                 <span className="flex items-center gap-3">
-                  <Mail className="h-5 w-5 text-amber-300" />
+                  <Mail className="h-5 w-5 text-brandOrange" />
                   {dictionary.teamPage.joinByEmail}
                 </span>
                 <ArrowRight className="h-4 w-4 text-zinc-500" />
@@ -99,7 +100,7 @@ export default function TeamPage({ params }: PageProps) {
                 className="flex items-center justify-between rounded-2xl border border-zinc-800 bg-zinc-950/50 px-4 py-4 text-sm font-medium text-white hover:border-zinc-700 hover:bg-zinc-900"
               >
                 <span className="flex items-center gap-3">
-                  <Instagram className="h-5 w-5 text-pink-300" />
+                  <Instagram className="h-5 w-5 text-brandMagenta" />
                   {dictionary.teamPage.directMessage}
                 </span>
                 <ArrowRight className="h-4 w-4 text-zinc-500" />
@@ -112,7 +113,7 @@ export default function TeamPage({ params }: PageProps) {
                 className="flex items-center justify-between rounded-2xl border border-zinc-800 bg-zinc-950/50 px-4 py-4 text-sm font-medium text-white hover:border-zinc-700 hover:bg-zinc-900"
               >
                 <span className="flex items-center gap-3">
-                  <MessageCircle className="h-5 w-5 text-cyan-300" />
+                  <MessageCircle className="h-5 w-5 text-brandCyan" />
                   {dictionary.common.whatsapp}
                 </span>
                 <ArrowRight className="h-4 w-4 text-zinc-500" />
@@ -126,7 +127,7 @@ export default function TeamPage({ params }: PageProps) {
               <div className="mt-4">
                 <Link
                   href={clubLinks.linktree}
-                  className="text-sm font-semibold text-cyan-300 hover:text-cyan-200"
+                  className="text-sm font-semibold text-brandCyan hover:text-brandCyan/80"
                 >
                   Linktree
                 </Link>

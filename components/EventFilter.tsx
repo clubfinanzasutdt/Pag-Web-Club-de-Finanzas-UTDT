@@ -18,10 +18,10 @@ type TypeFilter = "all" | ActivityType;
 type StatusFilter = "all" | "upcoming" | "past";
 
 const badgeStyles: Record<Activity["type"], string> = {
-  charla: "border-cyan-500/20 bg-cyan-500/10 text-cyan-300",
-  visita: "border-pink-500/20 bg-pink-500/10 text-pink-300",
-  educacion: "border-purple-500/20 bg-purple-500/10 text-purple-300",
-  competencia: "border-amber-500/20 bg-amber-500/10 text-amber-300",
+  charla: "border-brandCyan/25 bg-brandCyan/10 text-brandCyan",
+  visita: "border-brandMagenta/25 bg-brandMagenta/10 text-brandMagenta",
+  educacion: "border-brandOrange/25 bg-brandOrange/10 text-brandOrange",
+  competencia: "border-brandCyan/25 bg-brandCyan/10 text-brandCyan",
   research: "border-white/10 bg-white/5 text-zinc-300"
 };
 
@@ -128,10 +128,10 @@ export default function EventFilter({
                   key={button.value}
                   type="button"
                   onClick={() => updateFilters(button.value, selectedStatus)}
-                  className={`rounded-full border px-4 py-2 text-sm font-medium ${
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-all ${
                     selectedType === button.value
-                      ? "border-white bg-white text-black"
-                      : "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-zinc-600 hover:text-white"
+                      ? "border-brandOrange bg-brandOrange text-black"
+                      : "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-brandOrange/50 hover:text-white"
                   }`}
                 >
                   {button.label}
@@ -150,10 +150,10 @@ export default function EventFilter({
                   key={button.value}
                   type="button"
                   onClick={() => updateFilters(selectedType, button.value)}
-                  className={`rounded-full border px-4 py-2 text-sm font-medium ${
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-all ${
                     selectedStatus === button.value
-                      ? "border-white bg-white text-black"
-                      : "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-zinc-600 hover:text-white"
+                      ? "border-brandCyan bg-brandCyan text-black"
+                      : "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-brandCyan/50 hover:text-white"
                   }`}
                 >
                   {button.label}
@@ -198,7 +198,7 @@ export default function EventFilter({
                       </span>
 
                       {event.status === "upcoming" ? (
-                        <span className="inline-flex rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-200">
+                        <span className="inline-flex rounded-full border border-brandOrange/25 bg-brandOrange/10 px-3 py-1 text-xs font-semibold text-brandOrange">
                           {dictionary.archivePage.filters.upcoming}
                         </span>
                       ) : null}

@@ -17,13 +17,14 @@ import { events } from "@/content/events";
 import { localePath } from "@/lib/i18n";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     lang: Locale;
-  };
+  }>;
 };
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const dictionary = getDictionary(params.lang);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const dictionary = getDictionary(lang);
 
   return {
     title: dictionary.meta.home.title,
@@ -31,8 +32,8 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function HomePage({ params }: PageProps) {
-  const { lang } = params;
+export default async function HomePage({ params }: PageProps) {
+  const { lang } = await params;
   const dictionary = getDictionary(lang);
 
   const featuredEvents = [...events]
@@ -45,32 +46,32 @@ export default function HomePage({ params }: PageProps) {
       title: dictionary.homeActivities.cards[0].title,
       description: dictionary.homeActivities.cards[0].description,
       href: localePath(lang, "/archive?filter=charla"),
-      iconClassName: "text-cyan-300",
-      iconBgClass: "bg-cyan-500/10"
+      iconClassName: "text-brandCyan",
+      iconBgClass: "bg-brandCyan/10"
     },
     {
       icon: Building2,
       title: dictionary.homeActivities.cards[1].title,
       description: dictionary.homeActivities.cards[1].description,
       href: localePath(lang, "/archive?filter=visita"),
-      iconClassName: "text-pink-300",
-      iconBgClass: "bg-pink-500/10"
+      iconClassName: "text-brandMagenta",
+      iconBgClass: "bg-brandMagenta/10"
     },
     {
       icon: GraduationCap,
       title: dictionary.homeActivities.cards[2].title,
       description: dictionary.homeActivities.cards[2].description,
       href: localePath(lang, "/archive?filter=educacion"),
-      iconClassName: "text-purple-300",
-      iconBgClass: "bg-purple-500/10"
+      iconClassName: "text-brandOrange",
+      iconBgClass: "bg-brandOrange/10"
     },
     {
       icon: Trophy,
       title: dictionary.homeActivities.cards[3].title,
       description: dictionary.homeActivities.cards[3].description,
       href: localePath(lang, "/archive?filter=competencia"),
-      iconClassName: "text-amber-300",
-      iconBgClass: "bg-amber-500/10"
+      iconClassName: "text-brandCyan",
+      iconBgClass: "bg-brandCyan/10"
     }
   ];
 

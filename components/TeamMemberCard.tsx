@@ -32,7 +32,7 @@ export default function TeamMemberCard({
             href={member.linkedin}
             target="_blank"
             rel="noreferrer"
-            className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-cyan-300 hover:text-cyan-200"
+            className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-brandCyan hover:text-brandCyan/80"
           >
             <Linkedin className="h-4 w-4" />
             LinkedIn

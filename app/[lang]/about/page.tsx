@@ -12,13 +12,14 @@ import { Locale } from "@/lib/types";
 import { localePath } from "@/lib/i18n";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     lang: Locale;
-  };
+  }>;
 };
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const dictionary = getDictionary(params.lang);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const dictionary = getDictionary(lang);
 
   return {
     title: dictionary.meta.about.title,
@@ -26,8 +27,8 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function AboutPage({ params }: PageProps) {
-  const { lang } = params;
+export default async function AboutPage({ params }: PageProps) {
+  const { lang } = await params;
   const dictionary = getDictionary(lang);
 
   const icons = [Briefcase, GraduationCap, TrendingUp, Users, Rocket];

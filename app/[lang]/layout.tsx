@@ -16,9 +16,9 @@ const inter = Inter({
 
 type LayoutProps = {
   children: ReactNode;
-  params: {
+  params: Promise<{
     lang: Locale;
-  };
+  }>;
 };
 
 export function generateStaticParams() {
@@ -27,8 +27,9 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export function generateMetadata({ params }: LayoutProps): Metadata {
-  const dictionary = getDictionary(params.lang);
+export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
+  const { lang } = await params;
+  const dictionary = getDictionary(lang);
 
   return {
     title: {
@@ -39,8 +40,8 @@ export function generateMetadata({ params }: LayoutProps): Metadata {
   };
 }
 
-export default function RootLayout({ children, params }: LayoutProps) {
-  const { lang } = params;
+export default async function RootLayout({ children, params }: LayoutProps) {
+  const { lang } = await params;
 
   if (!isLocale(lang)) {
     notFound();

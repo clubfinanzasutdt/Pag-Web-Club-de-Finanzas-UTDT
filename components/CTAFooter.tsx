@@ -20,14 +20,14 @@ export default function CTAFooter({ dictionary }: CTAFooterProps) {
       label: dictionary.common.whatsapp,
       icon: MessageCircle,
       className:
-        "border-cyan-500/20 bg-cyan-500/10 text-cyan-200 hover:bg-cyan-500/15"
+        "border-brandCyan/25 bg-brandCyan/10 text-brandCyan hover:bg-brandCyan/15"
     },
     {
       href: clubLinks.instagram,
       label: dictionary.common.instagram,
       icon: Instagram,
       className:
-        "border-pink-500/20 bg-pink-500/10 text-pink-200 hover:bg-pink-500/15"
+        "border-brandMagenta/25 bg-brandMagenta/10 text-brandMagenta hover:bg-brandMagenta/15"
     },
     {
       href: clubLinks.linkedin,
@@ -48,14 +48,14 @@ export default function CTAFooter({ dictionary }: CTAFooterProps) {
       label: dictionary.common.email,
       icon: Mail,
       className:
-        "border-amber-500/20 bg-amber-500/10 text-amber-200 hover:bg-amber-500/15"
+        "border-brandOrange/25 bg-brandOrange/10 text-brandOrange hover:bg-brandOrange/15"
     },
     {
       href: clubLinks.suggestSpeaker,
       label: dictionary.common.suggestSpeaker,
       icon: Mic,
       className:
-        "border-purple-500/20 bg-purple-500/10 text-purple-200 hover:bg-purple-500/15"
+        "border-brandMagenta/25 bg-brandMagenta/10 text-brandMagenta hover:bg-brandMagenta/15"
     }
   ];
 

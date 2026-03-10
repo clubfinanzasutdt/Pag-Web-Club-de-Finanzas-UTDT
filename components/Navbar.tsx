@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Dictionary } from "@/lib/dictionaries";
@@ -37,17 +38,23 @@ export default function Navbar({ lang, dictionary }: NavbarProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-800/80 bg-black/55 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-zinc-800/60 bg-black/70 backdrop-blur-xl">
       <div className="site-container flex h-20 items-center justify-between gap-6">
         <Link
           href={localePath(lang, "/")}
-          className="flex shrink-0 items-center gap-3"
+          className="flex shrink-0 items-center gap-3 group"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-amberAccent via-cyanAccent to-pinkAccent text-sm font-black text-black">
-            dt
+          <div className="relative h-11 w-11 overflow-hidden rounded-xl transition-transform group-hover:scale-105">
+            <Image
+              src="/images/logo.png"
+              alt="DiTella Finance Club"
+              fill
+              className="object-cover"
+              priority
+            />
           </div>
           <div className="hidden sm:block">
-            <div className="text-sm font-semibold text-white">
+            <div className="text-sm font-bold text-white">
               {dictionary.site.name}
             </div>
             <div className="text-xs text-zinc-500">{dictionary.site.tagline}</div>
@@ -61,7 +68,7 @@ export default function Navbar({ lang, dictionary }: NavbarProps) {
               href={localePath(lang, item.href)}
               className={`rounded-full px-4 py-2 text-sm font-medium ${
                 isActive(item.href)
-                  ? "bg-white/10 text-white"
+                  ? "bg-brandOrange/15 text-brandOrange"
                   : "text-zinc-400 hover:bg-white/5 hover:text-white"
               }`}
             >
@@ -74,7 +81,7 @@ export default function Navbar({ lang, dictionary }: NavbarProps) {
           <LanguageSwitcher currentLang={lang} />
           <Link
             href={localePath(lang, "/archive?filter=upcoming")}
-            className="rounded-full bg-amberAccent px-4 py-2 text-sm font-semibold text-black hover:scale-[1.01] hover:bg-amber-400"
+            className="rounded-full bg-brandOrange px-4 py-2.5 text-sm font-semibold text-black hover:brightness-110 transition-all"
           >
             {dictionary.nav.upcomingCta}
           </Link>
@@ -114,7 +121,7 @@ export default function Navbar({ lang, dictionary }: NavbarProps) {
 
             <Link
               href={localePath(lang, "/archive?filter=upcoming")}
-              className="rounded-2xl bg-amberAccent px-4 py-3 text-sm font-semibold text-black"
+              className="rounded-2xl bg-brandOrange px-4 py-3 text-sm font-semibold text-black"
               onClick={() => setIsOpen(false)}
             >
               {dictionary.nav.upcomingCta}
