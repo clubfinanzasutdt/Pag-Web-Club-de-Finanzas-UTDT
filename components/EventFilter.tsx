@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import { Building2, CalendarDays, User } from "lucide-react";
+import { Building2, CalendarDays, ChevronLeft, ChevronRight, User, X } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Dictionary } from "@/lib/dictionaries";
 import { Activity, ActivityType, Locale } from "@/lib/types";
@@ -33,39 +33,51 @@ const activityTypes: ActivityType[] = [
   "research"
 ];
 
-const companyLogoDomains: Record<string, string> = {
-  "Grupo Financiero Galicia": "galicia.ar",
-  "Banco Galicia": "galicia.ar",
-  "Grupo Techint": "techint.com",
-  "Vista Energy": "vistaenergy.com",
-  "Cocos Capital": "cocos.capital",
-  "Grupo IEB": "ieb.com.ar",
-  "Ualá / 17Sigma": "uala.com.ar",
-  "Ualá": "uala.com.ar",
-  "ARGIS": "argis.com.ar",
-  "J.P. Morgan Argentina": "jpmorgan.com",
-  "J.P. Morgan": "jpmorgan.com",
-  "Balanz Capital": "balanz.com",
-  Balanz: "balanz.com",
-  Citi: "citi.com",
-  Adcap: "ad-cap.com.ar",
-  "BYMA / BYMALAB": "byma.com.ar",
-  Globant: "globant.com",
-  Allaria: "allaria.com.ar",
-  "Bolsa de Comercio de Buenos Aires": "bcba.sba.com.ar",
-  "GST Grupo Financiero": "gstfinanciero.com",
-  "Banco Central": "bcra.gob.ar",
-  "Raízen": "raizen.com.ar",
-  HSBC: "hsbc.com.ar",
-  EY: "ey.com",
-  Nubank: "nubank.com.br",
-  "Consultatio Financial Services": "consultatio.com.ar",
-  "Grupo SBS": "gruposbs.com",
-  Lazard: "lazard.com",
-  "Zurich Seguros": "zurich.com.ar",
-  "BroadSpan Capital": "broadspancapital.com",
-  "CFA Institute": "cfainstitute.org",
-  "McGill University": "mcgill.ca"
+const companyLogoPaths: Record<string, string> = {
+  ARGIS: "/company-logos/argis.png",
+  Adcap: "/company-logos/adcap.png",
+  "Agro / Los Grobo": "/company-logos/los-grobo.png",
+  "Allaria / BCBA": "/company-logos/allaria-bcba.png",
+  "Allaria Ledesma": "/company-logos/allaria-ledesma.png",
+  Anker: "/company-logos/anker.png",
+  "BYMA / BYMALAB": "/company-logos/byma-bymalab.png",
+  Balanz: "/company-logos/balanz.png",
+  "Balanz Capital": "/company-logos/balanz-capital.png",
+  "Banco Central": "/company-logos/banco-central.png",
+  "BroadSpan Capital": "/company-logos/broadspan-capital.png",
+  "Brubank / Digital House": "/company-logos/brubank-dh.png",
+  "CFA Institute": "/company-logos/cfa-institute.png",
+  Citi: "/company-logos/citi.png",
+  "Club de Finanzas UTDT": "/company-logos/club-finanzas-utdt.png",
+  "Cocos Capital": "/company-logos/cocos-capital.png",
+  "Cocos Capital / Glamit": "/company-logos/cocos-glamit.png",
+  "Columbus Zuma / UTDT": "/company-logos/columbus-zuma-utdt.png",
+  "Consultatio Financial Services": "/company-logos/consultatio.png",
+  EY: "/company-logos/ey.png",
+  "GST Grupo Financiero": "/company-logos/gst.png",
+  Globant: "/company-logos/globant.png",
+  "Grupo Financiero Galicia": "/company-logos/galicia.png",
+  "Grupo IEB": "/company-logos/grupo-ieb.png",
+  "Grupo SBS": "/company-logos/grupo-sbs.png",
+  "Grupo Techint": "/company-logos/techint.png",
+  HSBC: "/company-logos/hsbc.png",
+  "J.P. Morgan": "/company-logos/jp-morgan.png",
+  "J.P. Morgan Argentina": "/company-logos/jp-morgan-argentina.png",
+  "La Libertad Avanza": "/company-logos/lla.png",
+  Lazard: "/company-logos/lazard.png",
+  "Liebre Capital": "/company-logos/liebre-capital.png",
+  "Maestría en Finanzas UTDT": "/company-logos/mfin-utdt.png",
+  "McGill University": "/company-logos/mcgill.png",
+  "Ministerio de Economía": "/company-logos/ministerio-economia.png",
+  Nubank: "/company-logos/nubank.png",
+  "Raízen": "/company-logos/raizen.png",
+  "República Argentina": "/company-logos/republica-argentina.png",
+  UTDT: "/company-logos/utdt.png",
+  "Ualá": "/company-logos/uala.png",
+  "Ualá / 17Sigma": "/company-logos/uala-17sigma.png",
+  "University Trading Challenge": "/company-logos/utc.png",
+  "Vista Energy": "/company-logos/vista-energy.png",
+  "Zurich Seguros": "/company-logos/zurich.png"
 };
 
 const initials = (value: string) =>
@@ -78,11 +90,11 @@ const initials = (value: string) =>
 
 function LogoChip({
   label,
-  domain,
+  logoPath,
   variant
 }: {
   label: string;
-  domain?: string;
+  logoPath?: string;
   variant: "speaker" | "company";
 }) {
   const chipClasses =
@@ -93,13 +105,15 @@ function LogoChip({
   return (
     <div className={`inline-flex items-center gap-3 rounded-full border px-3 py-2 text-xs font-medium ${chipClasses}`}>
       <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-black/40 text-[11px] font-semibold text-white">
-        {domain ? (
-          <img
-            src={`https://logo.clearbit.com/${domain}`}
-            alt={label}
-            className="h-full w-full object-cover"
-            loading="lazy"
-          />
+        {logoPath ? (
+          <div className="flex h-full w-full items-center justify-center bg-white p-1">
+            <img
+              src={logoPath}
+              alt={label}
+              className="h-full w-full object-contain"
+              loading="lazy"
+            />
+          </div>
         ) : (
           initials(label)
         )}
@@ -114,6 +128,8 @@ export default function EventFilter({
   lang,
   dictionary
 }: EventFilterProps) {
+  const [activeGalleryEventId, setActiveGalleryEventId] = useState<string | null>(null);
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -179,6 +195,40 @@ export default function EventFilter({
     () => new Set(events.map((event) => event.status)).size > 1,
     [events]
   );
+
+  const activeGalleryEvent = useMemo(
+    () => filteredEvents.find((event) => event.id === activeGalleryEventId) ?? null,
+    [activeGalleryEventId, filteredEvents]
+  );
+
+  useEffect(() => {
+    if (!activeGalleryEvent) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveGalleryEventId(null);
+      }
+
+      if (!activeGalleryEvent.gallery?.length) {
+        return;
+      }
+
+      if (event.key === "ArrowRight") {
+        setActiveGalleryIndex((index) => (index + 1) % activeGalleryEvent.gallery!.length);
+      }
+
+      if (event.key === "ArrowLeft") {
+        setActiveGalleryIndex((index) =>
+          (index - 1 + activeGalleryEvent.gallery!.length) % activeGalleryEvent.gallery!.length
+        );
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [activeGalleryEvent]);
 
   const typeButtons: Array<{ value: TypeFilter; label: string }> = [
     { value: "all", label: dictionary.archivePage.filters.all },
@@ -253,83 +303,106 @@ export default function EventFilter({
         </div>
       ) : (
         <div className="mt-8 grid gap-6">
-          {filteredEvents.map((event) => {
-            const companyDomain = event.company ? companyLogoDomains[event.company] : undefined;
+      {filteredEvents.map((event) => {
+            const companyLogoPath = event.company ? companyLogoPaths[event.company] : undefined;
+            const hasGallery = Boolean(event.gallery?.length);
 
             return (
               <article
                 key={event.id}
                 className="glass-card overflow-hidden transition-transform duration-200 hover:-translate-y-0.5"
               >
-                <div className="grid gap-0 md:grid-cols-[280px_1fr]">
-                  <div className="relative aspect-[4/3] md:aspect-auto">
-                    <Image
-                      src={event.image}
-                      alt={event.title[lang]}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 280px"
-                    />
-                  </div>
-
-                  <div className="p-6">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <span
-                        className={`inline-flex rounded-full border px-3 py-1 text-xs font-semibold ${badgeStyles[event.type]}`}
-                      >
-                        {dictionary.activityTypes[event.type]}
-                      </span>
-
-                      {event.status === "upcoming" ? (
-                        <span className="inline-flex rounded-full border border-brandOrange/25 bg-brandOrange/10 px-3 py-1 text-xs font-semibold text-brandOrange">
-                          {dictionary.archivePage.filters.upcoming}
-                        </span>
-                      ) : null}
-                    </div>
-
-                    <h3 className="mt-4 text-xl font-semibold text-white">
-                      {event.title[lang]}
-                    </h3>
-
-                    <div className="mt-4 flex flex-col gap-3 text-sm text-zinc-400">
-                      <div className="flex items-center gap-2">
-                        <CalendarDays className="h-4 w-4 text-zinc-500" />
-                        {formatDate(event.date, lang)}
-                      </div>
-
-                      {event.location ? (
-                        <div className="flex items-center gap-2">
-                          <Building2 className="h-4 w-4 text-zinc-500" />
-                          {event.location}
-                        </div>
-                      ) : null}
-
-                      {event.speakerRole ? (
-                        <div className="flex items-center gap-2">
-                          <User className="h-4 w-4 text-zinc-500" />
-                          {event.speakerRole[lang]}
-                        </div>
-                      ) : null}
-                    </div>
-
-                    {event.speaker || event.company ? (
-                      <div className="mt-5 flex flex-wrap gap-3">
-                        {event.speaker ? (
-                          <LogoChip label={event.speaker} variant="speaker" />
-                        ) : null}
-                        {event.company ? (
-                          <LogoChip
-                            label={event.company}
-                            domain={companyDomain}
-                            variant="company"
-                          />
-                        ) : null}
+                <div
+                  role={hasGallery ? "button" : undefined}
+                  tabIndex={hasGallery ? 0 : -1}
+                  onClick={() => {
+                    if (!hasGallery) return;
+                    setActiveGalleryEventId(event.id);
+                    setActiveGalleryIndex(0);
+                  }}
+                  onKeyDown={(pressedEvent) => {
+                    if (!hasGallery) return;
+                    if (pressedEvent.key === "Enter" || pressedEvent.key === " ") {
+                      pressedEvent.preventDefault();
+                      setActiveGalleryEventId(event.id);
+                      setActiveGalleryIndex(0);
+                    }
+                  }}
+                  className={`w-full text-left ${hasGallery ? "cursor-pointer" : ""}`}
+                >
+                  <div className={`grid gap-0 ${hasGallery ? "md:grid-cols-[280px_1fr]" : ""}`}>
+                    {hasGallery ? (
+                      <div className="relative aspect-[4/3] md:aspect-auto">
+                        <Image
+                          src={event.image}
+                          alt={event.title[lang]}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 280px"
+                          unoptimized
+                        />
                       </div>
                     ) : null}
 
-                    <p className="mt-5 text-sm leading-7 text-zinc-400">
-                      {event.description[lang]}
-                    </p>
+                    <div className="p-6">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span
+                          className={`inline-flex rounded-full border px-3 py-1 text-xs font-semibold ${badgeStyles[event.type]}`}
+                        >
+                          {dictionary.activityTypes[event.type]}
+                        </span>
+
+                        {event.status === "upcoming" ? (
+                          <span className="inline-flex rounded-full border border-brandOrange/25 bg-brandOrange/10 px-3 py-1 text-xs font-semibold text-brandOrange">
+                            {dictionary.archivePage.filters.upcoming}
+                          </span>
+                        ) : null}
+                      </div>
+
+                      <h3 className="mt-4 text-xl font-semibold text-white">
+                        {event.title[lang]}
+                      </h3>
+
+                      <div className="mt-4 flex flex-col gap-3 text-sm text-zinc-400">
+                        <div className="flex items-center gap-2">
+                          <CalendarDays className="h-4 w-4 text-zinc-500" />
+                          {formatDate(event.date, lang)}
+                        </div>
+
+                        {event.location ? (
+                          <div className="flex items-center gap-2">
+                            <Building2 className="h-4 w-4 text-zinc-500" />
+                            {event.location}
+                          </div>
+                        ) : null}
+
+                        {event.speakerRole ? (
+                          <div className="flex items-center gap-2">
+                            <User className="h-4 w-4 text-zinc-500" />
+                            {event.speakerRole[lang]}
+                          </div>
+                        ) : null}
+                      </div>
+
+                      {event.speaker || event.company ? (
+                        <div className="mt-5 flex flex-wrap gap-3">
+                          {event.speaker ? (
+                            <LogoChip label={event.speaker} variant="speaker" />
+                          ) : null}
+                          {event.company ? (
+                          <LogoChip
+                            label={event.company}
+                            logoPath={companyLogoPath}
+                            variant="company"
+                          />
+                          ) : null}
+                        </div>
+                      ) : null}
+
+                      <p className="mt-5 whitespace-pre-line text-sm leading-7 text-zinc-400">
+                        {event.description[lang]}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </article>
@@ -337,6 +410,103 @@ export default function EventFilter({
           })}
         </div>
       )}
+
+      {activeGalleryEvent?.gallery?.length ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4">
+          <button
+            type="button"
+            className="absolute inset-0"
+            aria-label="Close gallery overlay"
+            onClick={() => setActiveGalleryEventId(null)}
+          />
+
+          <div className="relative z-10 w-full max-w-5xl overflow-hidden rounded-[28px] border border-white/10 bg-zinc-950 shadow-2xl">
+            <div className="flex items-start justify-between gap-6 border-b border-white/10 p-5">
+              <div>
+                <div className="text-sm font-medium text-zinc-400">
+                  {formatDate(activeGalleryEvent.date, lang)}
+                </div>
+                <h3 className="mt-1 text-xl font-semibold text-white">
+                  {activeGalleryEvent.title[lang]}
+                </h3>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setActiveGalleryEventId(null)}
+                className="rounded-full border border-white/10 p-2 text-zinc-300 hover:border-white/20 hover:text-white"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="relative bg-black">
+              <img
+                src={activeGalleryEvent.gallery[activeGalleryIndex]}
+                alt={`${activeGalleryEvent.title[lang]} ${activeGalleryIndex + 1}`}
+                className="max-h-[72vh] w-full object-contain"
+              />
+
+              {activeGalleryEvent.gallery.length > 1 ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setActiveGalleryIndex(
+                        (activeGalleryIndex - 1 + activeGalleryEvent.gallery!.length) %
+                          activeGalleryEvent.gallery!.length
+                      )
+                    }
+                    className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-black/60 p-3 text-white hover:bg-black/80"
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setActiveGalleryIndex(
+                        (activeGalleryIndex + 1) % activeGalleryEvent.gallery!.length
+                      )
+                    }
+                    className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-black/60 p-3 text-white hover:bg-black/80"
+                  >
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
+                </>
+              ) : null}
+            </div>
+
+            {activeGalleryEvent.gallery.length > 1 ? (
+              <div className="flex items-center justify-between gap-4 border-t border-white/10 px-5 py-4">
+                <div className="text-sm text-zinc-400">
+                  {activeGalleryIndex + 1} / {activeGalleryEvent.gallery.length}
+                </div>
+                <div className="flex gap-2 overflow-x-auto">
+                  {activeGalleryEvent.gallery.map((image, index) => (
+                    <button
+                      key={image}
+                      type="button"
+                      onClick={() => setActiveGalleryIndex(index)}
+                      className={`overflow-hidden rounded-xl border ${
+                        index === activeGalleryIndex
+                          ? "border-brandOrange"
+                          : "border-white/10 opacity-70 hover:opacity-100"
+                      }`}
+                    >
+                      <img
+                        src={image}
+                        alt={`${activeGalleryEvent.title[lang]} thumbnail ${index + 1}`}
+                        className="h-16 w-16 object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

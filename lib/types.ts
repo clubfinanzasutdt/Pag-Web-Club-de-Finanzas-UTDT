@@ -26,6 +26,7 @@ export type Activity = {
   location?: string;
   registrationLink?: string;
   image: string;
+  gallery?: string[];
   status: ActivityStatus;
   partnerTags?: string[];
 };

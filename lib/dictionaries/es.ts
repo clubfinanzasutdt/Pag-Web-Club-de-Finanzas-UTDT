@@ -194,20 +194,20 @@ const esDictionary = {
     emptyState: "No encontramos actividades con esos filtros."
   },
   teamPage: {
-    title: "Equipo y comunidad",
+    title: "Equipo",
     intro:
-      "Detrás del club hay un equipo que diseña experiencias, articula con firmas, coordina contenido y hace que la comunidad siga creciendo.",
-    boardTitle: "Comisión actual",
+      "El Club de Finanzas busca generar un espacio de encuentro y aprendizaje para alumnos de UTDT interesados en la industria financiera, conectándolos con pares, profesionales y empresas a través de actividades aplicadas.",
+    boardTitle: "Equipo actual",
     joinTitle: "Cómo sumarte",
     joinSteps: [
-      "Participá de charlas, visitas y actividades abiertas para conocer de cerca la propuesta del club.",
-      "Seguinos por Instagram o escribinos por WhatsApp si querés estar al tanto de convocatorias, proyectos y próximos eventos.",
-      "Postulate cuando abramos instancias formales de incorporación o acercanos una idea concreta para colaborar."
+      "Participá de charlas, presentaciones, simulaciones bursátiles y actividades abiertas para conocer el enfoque del club.",
+      "Seguinos por Instagram o escribinos por mail si querés enterarte de próximos eventos y oportunidades para involucrarte.",
+      "Acercanos propuestas, oradores o ideas para seguir fortaleciendo la comunidad de finanzas en UTDT."
     ],
     contactTitle: "Contacto",
     contactBody:
-      "Estamos siempre abiertos a propuestas de oradores, alianzas institucionales, actividades con empresas y nuevos miembros con ganas de construir.",
-    joinButton: "Sumate",
+      "El club promueve el contacto permanente con la actualidad económica y financiera para construir una comunidad con criterio, debate y aprendizaje continuo.",
+    joinButton: "Escribinos",
     joinByEmail: "Escribinos",
     directMessage: "Mandanos un DM"
   },

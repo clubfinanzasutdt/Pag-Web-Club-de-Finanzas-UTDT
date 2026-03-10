@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Linkedin } from "lucide-react";
 import { TeamMember, Locale } from "@/lib/types";
 
@@ -11,19 +10,20 @@ export default function TeamMemberCard({
   member,
   lang
 }: TeamMemberCardProps) {
+  const initials = member.name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((chunk) => chunk[0]?.toUpperCase())
+    .join("");
+
   return (
-    <article className="glass-card overflow-hidden">
-      <div className="relative aspect-[4/3]">
-        <Image
-          src={member.image}
-          alt={member.name}
-          fill
-          className="object-cover"
-          sizes="(max-width: 1280px) 50vw, 25vw"
-        />
+    <article className="glass-card p-6">
+      <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/5 text-lg font-semibold text-white">
+        {initials}
       </div>
 
-      <div className="p-6">
+      <div className="mt-5">
         <h3 className="text-lg font-semibold text-white">{member.name}</h3>
         <p className="mt-2 text-sm leading-7 text-zinc-400">{member.role[lang]}</p>
 

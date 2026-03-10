@@ -1,4 +1,6 @@
 import { Activity, ActivityType, LocaleString } from "@/lib/types";
+import { galleryForArchiveEvent } from "@/content/archiveGalleries";
+import { archiveDescriptionOverrides } from "@/content/archiveDescriptions";
 
 type Seed = readonly [id: string, date: string, page: number, type: ActivityType, caption: string];
 
@@ -1094,18 +1096,20 @@ export const archiveEvents: Activity[] = archiveSeeds.map(([id, date, page, type
   const speaker = override?.speaker ?? inferSpeaker(caption);
   const company = override?.company ?? inferCompany(caption);
   const title = override?.title ?? titleFromCaption(caption, type, company, speaker);
+  const gallery = galleryForArchiveEvent(id);
 
   return {
     id,
     title: bi(title),
     type,
     date,
-    description: bi(summarize(caption)),
+    description: archiveDescriptionOverrides[id] ?? bi(summarize(caption)),
     speaker,
     speakerRole: override?.speakerRole ? bi(override.speakerRole) : undefined,
     company,
     location: override?.location,
-    image: pageImage(page),
+    image: gallery[0] ?? pageImage(page),
+    gallery,
     status: "past"
   };
 });

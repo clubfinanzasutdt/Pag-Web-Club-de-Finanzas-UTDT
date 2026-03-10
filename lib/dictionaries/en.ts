@@ -194,20 +194,20 @@ const enDictionary = {
     emptyState: "No activities match those filters."
   },
   teamPage: {
-    title: "Team & community",
+    title: "Team",
     intro:
-      "Behind the club there is a team that designs experiences, works with firms, coordinates content, and keeps the community growing.",
-    boardTitle: "Current board",
+      "The Finance Club aims to provide a meeting point and learning environment for UTDT students interested in finance, connecting them with peers, professionals, and firms through applied activities.",
+    boardTitle: "Current team",
     joinTitle: "How to join",
     joinSteps: [
-      "Attend talks, visits, and open activities to get a feel for the club’s approach.",
-      "Follow us on Instagram or message us on WhatsApp if you want updates on openings, projects, and upcoming events.",
-      "Apply when we open formal recruitment rounds or bring us a concrete idea for how you would like to contribute."
+      "Attend talks, presentations, trading simulations, and open activities to understand the club’s approach.",
+      "Follow us on Instagram or email us if you want updates on upcoming events and ways to get involved.",
+      "Send us speaker ideas, proposals, or collaborations that can strengthen the UTDT finance community."
     ],
     contactTitle: "Contact",
     contactBody:
-      "We are always open to speaker suggestions, institutional partnerships, company activities, and new members who want to build.",
-    joinButton: "Join us",
+      "The club encourages continuous engagement with economic and financial news so members can build stronger judgment, discussion habits, and long-term learning.",
+    joinButton: "Write to us",
     joinByEmail: "Email us",
     directMessage: "Send us a DM"
   },
