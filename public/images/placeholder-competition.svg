@@ -1,0 +1,15 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#111111"/>
+  <circle cx="248" cy="184" r="160" fill="#F59E0B" fill-opacity="0.14"/>
+  <circle cx="950" cy="222" r="144" fill="#EC4899" fill-opacity="0.12"/>
+  <rect x="136" y="152" width="928" height="424" rx="32" fill="#18181B" stroke="#27272A"/>
+  <path d="M208 472L360 336L500 396L662 252L804 332L992 196" stroke="#F59E0B" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="208" cy="472" r="20" fill="#F59E0B"/>
+  <circle cx="360" cy="336" r="20" fill="#06B6D4"/>
+  <circle cx="500" cy="396" r="20" fill="#EC4899"/>
+  <circle cx="662" cy="252" r="20" fill="#8B5CF6"/>
+  <circle cx="804" cy="332" r="20" fill="#06B6D4"/>
+  <circle cx="992" cy="196" r="20" fill="#F59E0B"/>
+  <text x="136" y="688" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="700">Competencias</text>
+  <text x="136" y="742" fill="#A1A1AA" font-family="Arial, Helvetica, sans-serif" font-size="28">Di Tella Finance Club</text>
+</svg>

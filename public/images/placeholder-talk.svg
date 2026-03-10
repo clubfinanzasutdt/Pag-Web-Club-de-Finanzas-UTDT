@@ -1,0 +1,16 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#111111"/>
+  <circle cx="202" cy="184" r="170" fill="#06B6D4" fill-opacity="0.18"/>
+  <circle cx="980" cy="182" r="150" fill="#EC4899" fill-opacity="0.16"/>
+  <circle cx="734" cy="610" r="210" fill="#8B5CF6" fill-opacity="0.18"/>
+  <rect x="96" y="112" width="560" height="360" rx="28" fill="#18181B" stroke="#27272A"/>
+  <rect x="144" y="164" width="300" height="20" rx="10" fill="#F59E0B" fill-opacity="0.9"/>
+  <rect x="144" y="214" width="420" height="14" rx="7" fill="#3F3F46"/>
+  <rect x="144" y="248" width="376" height="14" rx="7" fill="#3F3F46"/>
+  <rect x="144" y="282" width="258" height="14" rx="7" fill="#3F3F46"/>
+  <rect x="144" y="338" width="120" height="120" rx="24" fill="#06B6D4" fill-opacity="0.2"/>
+  <rect x="292" y="338" width="120" height="120" rx="24" fill="#EC4899" fill-opacity="0.2"/>
+  <rect x="440" y="338" width="120" height="120" rx="24" fill="#8B5CF6" fill-opacity="0.2"/>
+  <text x="96" y="680" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="700">Charlas</text>
+  <text x="96" y="734" fill="#A1A1AA" font-family="Arial, Helvetica, sans-serif" font-size="28">Di Tella Finance Club</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#111111"/>
+  <rect x="88" y="96" width="1024" height="520" rx="32" fill="#18181B" stroke="#27272A"/>
+  <rect x="136" y="144" width="216" height="376" rx="20" fill="#27272A"/>
+  <rect x="384" y="144" width="216" height="376" rx="20" fill="#1F2937"/>
+  <rect x="632" y="144" width="216" height="376" rx="20" fill="#1F2937"/>
+  <rect x="880" y="144" width="184" height="376" rx="20" fill="#27272A"/>
+  <circle cx="244" cy="332" r="62" fill="#F59E0B" fill-opacity="0.9"/>
+  <circle cx="492" cy="276" r="62" fill="#06B6D4" fill-opacity="0.8"/>
+  <circle cx="740" cy="332" r="62" fill="#EC4899" fill-opacity="0.8"/>
+  <circle cx="972" cy="250" r="46" fill="#8B5CF6" fill-opacity="0.8"/>
+  <text x="96" y="688" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="700">Visitas</text>
+  <text x="96" y="742" fill="#A1A1AA" font-family="Arial, Helvetica, sans-serif" font-size="28">Di Tella Finance Club</text>
+</svg>

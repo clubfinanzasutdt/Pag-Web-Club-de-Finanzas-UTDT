@@ -1,0 +1,15 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#111111"/>
+  <circle cx="190" cy="164" r="130" fill="#8B5CF6" fill-opacity="0.18"/>
+  <circle cx="1032" cy="646" r="164" fill="#06B6D4" fill-opacity="0.12"/>
+  <rect x="112" y="136" width="976" height="488" rx="32" fill="#18181B" stroke="#27272A"/>
+  <rect x="164" y="188" width="874" height="52" rx="16" fill="#27272A"/>
+  <rect x="164" y="268" width="244" height="244" rx="24" fill="#8B5CF6" fill-opacity="0.18"/>
+  <rect x="436" y="268" width="244" height="244" rx="24" fill="#06B6D4" fill-opacity="0.18"/>
+  <rect x="708" y="268" width="244" height="244" rx="24" fill="#F59E0B" fill-opacity="0.18"/>
+  <rect x="228" y="336" width="116" height="20" rx="10" fill="white" fill-opacity="0.9"/>
+  <rect x="500" y="336" width="116" height="20" rx="10" fill="white" fill-opacity="0.9"/>
+  <rect x="772" y="336" width="116" height="20" rx="10" fill="white" fill-opacity="0.9"/>
+  <text x="112" y="690" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="700">Educación</text>
+  <text x="112" y="744" fill="#A1A1AA" font-family="Arial, Helvetica, sans-serif" font-size="28">Di Tella Finance Club</text>
+</svg>

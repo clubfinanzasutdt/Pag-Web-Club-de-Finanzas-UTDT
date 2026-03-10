@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+::selection {
+  background: rgba(245, 158, 11, 0.35);
+  color: #ffffff;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased;
+  }
+
+  a,
+  button {
+    @apply transition-all duration-200;
+  }
+}
+
+@layer components {
+  .site-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-shell {
+    @apply py-20 sm:py-24 lg:py-28;
+  }
+
+  .section-eyebrow {
+    @apply mb-4 inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-medium text-zinc-300;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl;
+  }
+
+  .section-description {
+    @apply mt-4 max-w-3xl text-base leading-7 text-zinc-400 sm:text-lg;
+  }
+
+  .glass-card {
+    @apply rounded-2xl border border-zinc-800 bg-zinc-900/70 backdrop-blur;
+  }
+}
