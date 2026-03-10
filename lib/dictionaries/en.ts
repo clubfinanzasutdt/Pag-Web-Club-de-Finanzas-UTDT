@@ -178,7 +178,7 @@ const enDictionary = {
   archivePage: {
     title: "Archive",
     intro:
-      "A living record of what we do: past activities, upcoming events, and multiple formats that show the club’s reach.",
+      "A chronological archive built from the club’s full post history: talks, visits, workshops, competitions, and recap posts across every stage of the community.",
     filters: {
       typeTitle: "Filter by type",
       statusTitle: "Status",

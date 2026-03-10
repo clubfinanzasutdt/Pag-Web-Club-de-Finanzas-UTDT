@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import EventFilter from "@/components/EventFilter";
 import { getDictionary } from "@/lib/dictionaries";
 import { Locale } from "@/lib/types";
-import { events } from "@/content/events";
+import { archiveEvents } from "@/content/archiveEvents";
 
 type PageProps = {
   params: Promise<{ lang: string }>;
@@ -34,7 +34,7 @@ export default async function ArchivePage({ params }: PageProps) {
 
         <div className="mt-12">
           <Suspense fallback={<div className="glass-card p-8 text-center text-zinc-400">Loading...</div>}>
-            <EventFilter events={events} lang={lang} dictionary={dictionary} />
+            <EventFilter events={archiveEvents} lang={lang} dictionary={dictionary} />
           </Suspense>
         </div>
       </div>

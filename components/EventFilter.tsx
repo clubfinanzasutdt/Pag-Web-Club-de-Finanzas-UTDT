@@ -33,6 +33,82 @@ const activityTypes: ActivityType[] = [
   "research"
 ];
 
+const companyLogoDomains: Record<string, string> = {
+  "Grupo Financiero Galicia": "galicia.ar",
+  "Banco Galicia": "galicia.ar",
+  "Grupo Techint": "techint.com",
+  "Vista Energy": "vistaenergy.com",
+  "Cocos Capital": "cocos.capital",
+  "Grupo IEB": "ieb.com.ar",
+  "Ualá / 17Sigma": "uala.com.ar",
+  "Ualá": "uala.com.ar",
+  "ARGIS": "argis.com.ar",
+  "J.P. Morgan Argentina": "jpmorgan.com",
+  "J.P. Morgan": "jpmorgan.com",
+  "Balanz Capital": "balanz.com",
+  Balanz: "balanz.com",
+  Citi: "citi.com",
+  Adcap: "ad-cap.com.ar",
+  "BYMA / BYMALAB": "byma.com.ar",
+  Globant: "globant.com",
+  Allaria: "allaria.com.ar",
+  "Bolsa de Comercio de Buenos Aires": "bcba.sba.com.ar",
+  "GST Grupo Financiero": "gstfinanciero.com",
+  "Banco Central": "bcra.gob.ar",
+  "Raízen": "raizen.com.ar",
+  HSBC: "hsbc.com.ar",
+  EY: "ey.com",
+  Nubank: "nubank.com.br",
+  "Consultatio Financial Services": "consultatio.com.ar",
+  "Grupo SBS": "gruposbs.com",
+  Lazard: "lazard.com",
+  "Zurich Seguros": "zurich.com.ar",
+  "BroadSpan Capital": "broadspancapital.com",
+  "CFA Institute": "cfainstitute.org",
+  "McGill University": "mcgill.ca"
+};
+
+const initials = (value: string) =>
+  value
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("");
+
+function LogoChip({
+  label,
+  domain,
+  variant
+}: {
+  label: string;
+  domain?: string;
+  variant: "speaker" | "company";
+}) {
+  const chipClasses =
+    variant === "speaker"
+      ? "border-brandCyan/20 bg-brandCyan/10 text-brandCyan"
+      : "border-white/10 bg-white/5 text-zinc-200";
+
+  return (
+    <div className={`inline-flex items-center gap-3 rounded-full border px-3 py-2 text-xs font-medium ${chipClasses}`}>
+      <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-black/40 text-[11px] font-semibold text-white">
+        {domain ? (
+          <img
+            src={`https://logo.clearbit.com/${domain}`}
+            alt={label}
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+        ) : (
+          initials(label)
+        )}
+      </div>
+      <span className="max-w-[16rem] truncate">{label}</span>
+    </div>
+  );
+}
+
 export default function EventFilter({
   events,
   lang,
@@ -99,6 +175,11 @@ export default function EventFilter({
       .sort((a, b) => +new Date(b.date) - +new Date(a.date));
   }, [events, selectedType, selectedStatus]);
 
+  const hasStatusVariants = useMemo(
+    () => new Set(events.map((event) => event.status)).size > 1,
+    [events]
+  );
+
   const typeButtons: Array<{ value: TypeFilter; label: string }> = [
     { value: "all", label: dictionary.archivePage.filters.all },
     { value: "charla", label: dictionary.archivePage.filters.charla },
@@ -117,7 +198,7 @@ export default function EventFilter({
   return (
     <div>
       <div className="glass-card p-6">
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className={`grid gap-6 ${hasStatusVariants ? "lg:grid-cols-2" : ""}`}>
           <div>
             <div className="mb-3 text-sm font-semibold text-white">
               {dictionary.archivePage.filters.typeTitle}
@@ -140,27 +221,29 @@ export default function EventFilter({
             </div>
           </div>
 
-          <div>
-            <div className="mb-3 text-sm font-semibold text-white">
-              {dictionary.archivePage.filters.statusTitle}
+          {hasStatusVariants ? (
+            <div>
+              <div className="mb-3 text-sm font-semibold text-white">
+                {dictionary.archivePage.filters.statusTitle}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {statusButtons.map((button) => (
+                  <button
+                    key={button.value}
+                    type="button"
+                    onClick={() => updateFilters(selectedType, button.value)}
+                    className={`rounded-full border px-4 py-2 text-sm font-medium transition-all ${
+                      selectedStatus === button.value
+                        ? "border-brandCyan bg-brandCyan text-black"
+                        : "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-brandCyan/50 hover:text-white"
+                    }`}
+                  >
+                    {button.label}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className="flex flex-wrap gap-3">
-              {statusButtons.map((button) => (
-                <button
-                  key={button.value}
-                  type="button"
-                  onClick={() => updateFilters(selectedType, button.value)}
-                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-all ${
-                    selectedStatus === button.value
-                      ? "border-brandCyan bg-brandCyan text-black"
-                      : "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-brandCyan/50 hover:text-white"
-                  }`}
-                >
-                  {button.label}
-                </button>
-              ))}
-            </div>
-          </div>
+          ) : null}
         </div>
       </div>
 
@@ -171,7 +254,7 @@ export default function EventFilter({
       ) : (
         <div className="mt-8 grid gap-6">
           {filteredEvents.map((event) => {
-            const metaLine = [event.company, event.speaker].filter(Boolean).join(" • ");
+            const companyDomain = event.company ? companyLogoDomains[event.company] : undefined;
 
             return (
               <article
@@ -214,10 +297,10 @@ export default function EventFilter({
                         {formatDate(event.date, lang)}
                       </div>
 
-                      {metaLine ? (
+                      {event.location ? (
                         <div className="flex items-center gap-2">
                           <Building2 className="h-4 w-4 text-zinc-500" />
-                          {metaLine}
+                          {event.location}
                         </div>
                       ) : null}
 
@@ -228,6 +311,21 @@ export default function EventFilter({
                         </div>
                       ) : null}
                     </div>
+
+                    {event.speaker || event.company ? (
+                      <div className="mt-5 flex flex-wrap gap-3">
+                        {event.speaker ? (
+                          <LogoChip label={event.speaker} variant="speaker" />
+                        ) : null}
+                        {event.company ? (
+                          <LogoChip
+                            label={event.company}
+                            domain={companyDomain}
+                            variant="company"
+                          />
+                        ) : null}
+                      </div>
+                    ) : null}
 
                     <p className="mt-5 text-sm leading-7 text-zinc-400">
                       {event.description[lang]}

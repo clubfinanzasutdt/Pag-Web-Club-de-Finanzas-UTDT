@@ -178,7 +178,7 @@ const esDictionary = {
   archivePage: {
     title: "Archivo",
     intro:
-      "Un registro vivo de lo que hacemos: actividades pasadas, próximos eventos y distintos formatos que muestran el alcance del club.",
+      "Un recorrido cronológico por la historia del club, armado a partir del archivo completo de posteos: charlas, visitas, talleres, competencias y recapitulaciones de cada etapa.",
     filters: {
       typeTitle: "Filtrar por tipo",
       statusTitle: "Estado",
