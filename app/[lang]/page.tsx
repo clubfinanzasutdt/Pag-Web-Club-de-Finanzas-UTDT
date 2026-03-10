@@ -17,13 +17,14 @@ import { events } from "@/content/events";
 import { localePath } from "@/lib/i18n";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     lang: Locale;
-  };
+  }>;
 };
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const dictionary = getDictionary(params.lang);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const dictionary = getDictionary(lang);
 
   return {
     title: dictionary.meta.home.title,
@@ -31,8 +32,8 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function HomePage({ params }: PageProps) {
-  const { lang } = params;
+export default async function HomePage({ params }: PageProps) {
+  const { lang } = await params;
   const dictionary = getDictionary(lang);
 
   const featuredEvents = [...events]

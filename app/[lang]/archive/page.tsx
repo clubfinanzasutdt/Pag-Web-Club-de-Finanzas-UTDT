@@ -5,13 +5,14 @@ import { Locale } from "@/lib/types";
 import { events } from "@/content/events";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     lang: Locale;
-  };
+  }>;
 };
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const dictionary = getDictionary(params.lang);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const dictionary = getDictionary(lang);
 
   return {
     title: dictionary.meta.archive.title,
@@ -19,8 +20,8 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function ArchivePage({ params }: PageProps) {
-  const { lang } = params;
+export default async function ArchivePage({ params }: PageProps) {
+  const { lang } = await params;
   const dictionary = getDictionary(lang);
 
   return (

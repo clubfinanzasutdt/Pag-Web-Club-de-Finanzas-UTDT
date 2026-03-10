@@ -8,13 +8,14 @@ import { teamMembers } from "@/content/team";
 import { clubLinks } from "@/content/links";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     lang: Locale;
-  };
+  }>;
 };
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const dictionary = getDictionary(params.lang);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const dictionary = getDictionary(lang);
 
   return {
     title: dictionary.meta.team.title,
@@ -22,8 +23,8 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function TeamPage({ params }: PageProps) {
-  const { lang } = params;
+export default async function TeamPage({ params }: PageProps) {
+  const { lang } = await params;
   const dictionary = getDictionary(lang);
 
   return (
