@@ -28,10 +28,13 @@ export function switchLocaleInPath(pathname: string, nextLocale: Locale) {
 }
 
 export function formatDate(date: string, lang: Locale) {
+  // Parse the date string as UTC by appending T12:00:00Z to avoid timezone edge cases
+  const dateObj = new Date(`${date}T12:00:00Z`);
+  
   return new Intl.DateTimeFormat(lang === "es" ? "es-AR" : "en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
     timeZone: "UTC"
-  }).format(new Date(date));
+  }).format(dateObj);
 }
