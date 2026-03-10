@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import EventFilter from "@/components/EventFilter";
 import { getDictionary } from "@/lib/dictionaries";
@@ -32,7 +33,9 @@ export default async function ArchivePage({ params }: PageProps) {
         <p className="section-description">{dictionary.archivePage.intro}</p>
 
         <div className="mt-12">
-          <EventFilter events={events} lang={lang} dictionary={dictionary} />
+          <Suspense fallback={<div className="glass-card p-8 text-center text-zinc-400">Loading...</div>}>
+            <EventFilter events={events} lang={lang} dictionary={dictionary} />
+          </Suspense>
         </div>
       </div>
     </div>
