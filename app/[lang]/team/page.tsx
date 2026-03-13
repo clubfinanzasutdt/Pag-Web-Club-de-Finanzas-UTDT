@@ -4,6 +4,7 @@ import Link from "next/link";
 import TeamMemberCard from "@/components/TeamMemberCard";
 import { getDictionary } from "@/lib/dictionaries";
 import { Locale } from "@/lib/types";
+import { assertLocale } from "@/lib/i18n";
 import { teamMembers } from "@/content/team";
 import { clubLinks } from "@/content/links";
 
@@ -13,7 +14,7 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang: langParam } = await params;
-  const lang = langParam as Locale;
+  const lang = assertLocale(langParam);
   const dictionary = getDictionary(lang);
 
   return {
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function TeamPage({ params }: PageProps) {
   const { lang: langParam } = await params;
-  const lang = langParam as Locale;
+  const lang = assertLocale(langParam);
   const dictionary = getDictionary(lang);
   const leads = teamMembers.filter((member) => member.tier === "lead");
   const directors = teamMembers.filter((member) => member.tier !== "lead");

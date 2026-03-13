@@ -191,7 +191,10 @@ const esDictionary = {
   footer: {
     tagline:
       "Charlas, visitas, educación e iniciativas para la comunidad de finanzas de UTDT.",
-    builtWith: "Hecho con Next.js y Vercel"
+    builtWith: "Hecho con Next.js y Vercel",
+    disclaimerTitle: "Disclaimer Finance Club",
+    disclaimer:
+      "El Club de Finanzas constituye una organización dirigida y conformada exclusivamente por alumnos de la Universidad Torcuato Di Tella. Toda opinión expresada, así como el contenido de las actividades y publicaciones generadas por el Club, recaen bajo la responsabilidad de sus autores y organizadores, y no constituyen una declaración oficial, aval ni posición institucional de la Universidad Torcuato Di Tella."
   },
   activityTypes: {
     charla: "Charla",

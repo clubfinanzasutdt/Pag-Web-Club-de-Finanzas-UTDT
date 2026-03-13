@@ -7,6 +7,9 @@ const repoRoot = path.dirname(fileURLToPath(import.meta.url));
 const nextConfig = {
   reactStrictMode: true,
   outputFileTracingRoot: repoRoot,
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
   turbopack: {
     root: repoRoot
   }

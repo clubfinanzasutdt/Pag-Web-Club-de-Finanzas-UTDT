@@ -35,7 +35,29 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
       default: dictionary.site.name,
       template: `%s | ${dictionary.site.name}`
     },
-    description: dictionary.site.tagline
+    description: dictionary.site.tagline,
+    // TODO: replace with actual production domain
+    metadataBase: new URL("https://clubfinanzasutdt.vercel.app"),
+    openGraph: {
+      title: dictionary.site.name,
+      description: dictionary.site.tagline,
+      locale: lang === "es" ? "es_AR" : "en_US",
+      type: "website",
+      siteName: dictionary.site.name,
+      images: [{ url: "/images/logo.png", width: 512, height: 512, alt: dictionary.site.name }],
+    },
+    twitter: {
+      card: "summary",
+      title: dictionary.site.name,
+      description: dictionary.site.tagline,
+      images: ["/images/logo.png"],
+    },
+    alternates: {
+      languages: {
+        es: "/es",
+        en: "/en",
+      },
+    },
   };
 }
 

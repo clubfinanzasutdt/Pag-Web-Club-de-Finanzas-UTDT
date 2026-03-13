@@ -84,6 +84,17 @@ export default function Footer({ dictionary }: FooterProps) {
           <div className="text-xs text-zinc-500">{dictionary.footer.builtWith}</div>
         </div>
       </div>
+
+      <div className="border-t border-zinc-800/40">
+        <div className="site-container py-6">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-zinc-500">
+            {dictionary.footer.disclaimerTitle}
+          </p>
+          <p className="mt-2 max-w-4xl text-[11px] leading-5 text-zinc-600">
+            {dictionary.footer.disclaimer}
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }

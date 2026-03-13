@@ -107,11 +107,12 @@ function LogoChip({
       <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-black/40 text-[11px] font-semibold text-white">
         {logoPath ? (
           <div className="flex h-full w-full items-center justify-center bg-white p-1">
-            <img
+            <Image
               src={logoPath}
               alt={label}
+              width={32}
+              height={32}
               className="h-full w-full object-contain"
-              loading="lazy"
             />
           </div>
         ) : (
@@ -339,7 +340,6 @@ export default function EventFilter({
                           fill
                           className="object-cover"
                           sizes="(max-width: 768px) 100vw, 280px"
-                          unoptimized
                         />
                       </div>
                     ) : null}
@@ -441,11 +441,16 @@ export default function EventFilter({
             </div>
 
             <div className="relative bg-black">
-              <img
-                src={activeGalleryEvent.gallery[activeGalleryIndex]}
-                alt={`${activeGalleryEvent.title[lang]} ${activeGalleryIndex + 1}`}
-                className="max-h-[72vh] w-full object-contain"
-              />
+              <div className="relative flex items-center justify-center" style={{ height: "72vh" }}>
+                <Image
+                  src={activeGalleryEvent.gallery[activeGalleryIndex]}
+                  alt={`${activeGalleryEvent.title[lang]} ${activeGalleryIndex + 1}`}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 80vw"
+                  priority
+                />
+              </div>
 
               {activeGalleryEvent.gallery.length > 1 ? (
                 <>
@@ -494,9 +499,11 @@ export default function EventFilter({
                           : "border-white/10 opacity-70 hover:opacity-100"
                       }`}
                     >
-                      <img
+                      <Image
                         src={image}
                         alt={`${activeGalleryEvent.title[lang]} thumbnail ${index + 1}`}
+                        width={64}
+                        height={64}
                         className="h-16 w-16 object-cover"
                       />
                     </button>

@@ -24,7 +24,6 @@ export type Activity = {
   speakerRole?: LocaleString;
   company?: string;
   location?: string;
-  registrationLink?: string;
   image: string;
   gallery?: string[];
   status: ActivityStatus;

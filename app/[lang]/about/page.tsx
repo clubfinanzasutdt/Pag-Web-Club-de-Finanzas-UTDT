@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 import { getDictionary } from "@/lib/dictionaries";
 import { Locale } from "@/lib/types";
-import { localePath } from "@/lib/i18n";
+import { assertLocale, localePath } from "@/lib/i18n";
 
 type PageProps = {
   params: Promise<{ lang: string }>;
@@ -17,7 +17,7 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang: langParam } = await params;
-  const lang = langParam as Locale;
+  const lang = assertLocale(langParam);
   const dictionary = getDictionary(lang);
 
   return {
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function AboutPage({ params }: PageProps) {
   const { lang: langParam } = await params;
-  const lang = langParam as Locale;
+  const lang = assertLocale(langParam);
   const dictionary = getDictionary(lang);
 
   const icons = [Briefcase, GraduationCap, TrendingUp, Users, Rocket];

@@ -191,7 +191,10 @@ const enDictionary = {
   footer: {
     tagline:
       "Talks, visits, education, and initiatives for the UTDT finance community.",
-    builtWith: "Built with Next.js and Vercel"
+    builtWith: "Built with Next.js and Vercel",
+    disclaimerTitle: "Finance Club Disclaimer",
+    disclaimer:
+      "The Finance Club is an organization led and composed exclusively by students of Universidad Torcuato Di Tella. All opinions expressed, as well as the content of the activities and publications produced by the Club, are the sole responsibility of their authors and organizers, and do not constitute an official statement, endorsement, or institutional position of Universidad Torcuato Di Tella."
   },
   activityTypes: {
     charla: "Fireside chat",

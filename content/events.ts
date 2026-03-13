@@ -20,7 +20,7 @@ export const events: Activity[] = [
     },
     company: "Balanz",
     location: "Campus Alcorta, UTDT",
-    registrationLink: "https://www.instagram.com/finanzasditella/",
+
     image: "/images/placeholder-talk.svg",
     status: "featured",
     partnerTags: ["Balanz", "Capital Markets"]
@@ -44,7 +44,7 @@ export const events: Activity[] = [
     },
     company: "Banco Galicia",
     location: "Torre Galicia, CABA",
-    registrationLink: "https://www.instagram.com/finanzasditella/",
+
     image: "/images/placeholder-visit.svg",
     status: "featured",
     partnerTags: ["Banco Galicia", "Trading", "Treasury"]
@@ -68,7 +68,7 @@ export const events: Activity[] = [
     },
     company: "BYMA",
     location: "Formato híbrido",
-    registrationLink: "https://www.instagram.com/finanzasditella/",
+
     image: "/images/placeholder-competition.svg",
     status: "featured",
     partnerTags: ["BYMA", "Competition", "Education"]
@@ -92,7 +92,7 @@ export const events: Activity[] = [
     },
     company: "J.P. Morgan Argentina",
     location: "Catalinas, CABA",
-    registrationLink: "https://www.instagram.com/finanzasditella/",
+
     image: "/images/placeholder-visit.svg",
     status: "past",
     partnerTags: ["J.P. Morgan", "Investment Banking"]
@@ -116,7 +116,7 @@ export const events: Activity[] = [
     },
     company: "Mercado Libre",
     location: "Campus Alcorta, UTDT",
-    registrationLink: "https://www.instagram.com/finanzasditella/",
+
     image: "/images/placeholder-talk.svg",
     status: "past",
     partnerTags: ["Mercado Libre", "Careers", "Finance"]
@@ -139,7 +139,7 @@ export const events: Activity[] = [
       en: "Applied education"
     },
     location: "Campus Alcorta, UTDT",
-    registrationLink: "https://www.instagram.com/finanzasditella/",
+
     image: "/images/placeholder-education.svg",
     status: "past",
     partnerTags: ["Valuation", "Education"]
@@ -163,7 +163,7 @@ export const events: Activity[] = [
     },
     company: "BICE",
     location: "Campus Alcorta, UTDT",
-    registrationLink: "https://www.instagram.com/finanzasditella/",
+
     image: "/images/placeholder-talk.svg",
     status: "past",
     partnerTags: ["BICE", "Infrastructure", "Development"]
@@ -187,7 +187,7 @@ export const events: Activity[] = [
     },
     company: "TPCG",
     location: "Campus Alcorta, UTDT",
-    registrationLink: "https://www.instagram.com/finanzasditella/",
+
     image: "/images/placeholder-talk.svg",
     status: "past",
     partnerTags: ["TPCG", "Macro", "Research"]
@@ -211,7 +211,7 @@ export const events: Activity[] = [
     },
     company: "BYMA",
     location: "Microcentro, CABA",
-    registrationLink: "https://www.instagram.com/finanzasditella/",
+
     image: "/images/placeholder-visit.svg",
     status: "past",
     partnerTags: ["BYMA", "Caja de Valores", "Market Infrastructure"]
@@ -235,7 +235,7 @@ export const events: Activity[] = [
     },
     company: "YPF / Pampa Energía",
     location: "UTDT",
-    registrationLink: "https://www.instagram.com/finanzasditella/",
+
     image: "/images/placeholder-research.svg",
     status: "past",
     partnerTags: ["YPF", "Pampa Energía", "Research"]
@@ -259,7 +259,7 @@ export const events: Activity[] = [
     },
     company: "YPF",
     location: "Campus Alcorta, UTDT",
-    registrationLink: "https://www.instagram.com/finanzasditella/",
+
     image: "/images/placeholder-talk.svg",
     status: "upcoming",
     partnerTags: ["YPF", "Corporate Finance"]
@@ -283,7 +283,7 @@ export const events: Activity[] = [
     },
     company: "Mercado Libre",
     location: "Saavedra, CABA",
-    registrationLink: "https://www.instagram.com/finanzasditella/",
+
     image: "/images/placeholder-visit.svg",
     status: "upcoming",
     partnerTags: ["Mercado Libre", "Investor Relations"]

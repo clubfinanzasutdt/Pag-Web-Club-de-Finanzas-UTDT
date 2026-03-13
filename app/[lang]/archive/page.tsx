@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import EventFilter from "@/components/EventFilter";
 import { getDictionary } from "@/lib/dictionaries";
 import { Locale } from "@/lib/types";
+import { assertLocale } from "@/lib/i18n";
 import { archiveEvents } from "@/content/archiveEvents";
 
 type PageProps = {
@@ -11,7 +12,7 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang: langParam } = await params;
-  const lang = langParam as Locale;
+  const lang = assertLocale(langParam);
   const dictionary = getDictionary(lang);
 
   return {
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ArchivePage({ params }: PageProps) {
   const { lang: langParam } = await params;
-  const lang = langParam as Locale;
+  const lang = assertLocale(langParam);
   const dictionary = getDictionary(lang);
 
   return (

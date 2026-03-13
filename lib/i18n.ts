@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { Locale } from "@/lib/types";
 
 export const locales = ["es", "en"] as const;
@@ -5,6 +6,11 @@ export const defaultLocale: Locale = "es";
 
 export function isLocale(value: string): value is Locale {
   return locales.includes(value as Locale);
+}
+
+export function assertLocale(value: string): Locale {
+  if (!isLocale(value)) notFound();
+  return value;
 }
 
 export function localePath(lang: Locale, path = "/") {

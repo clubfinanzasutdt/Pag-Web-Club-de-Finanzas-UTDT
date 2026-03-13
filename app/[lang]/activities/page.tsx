@@ -9,7 +9,7 @@ import Link from "next/link";
 import ActivityCard from "@/components/ActivityCard";
 import { getDictionary } from "@/lib/dictionaries";
 import { Locale } from "@/lib/types";
-import { localePath } from "@/lib/i18n";
+import { assertLocale, localePath } from "@/lib/i18n";
 
 type PageProps = {
   params: Promise<{ lang: string }>;
@@ -17,7 +17,7 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang: langParam } = await params;
-  const lang = langParam as Locale;
+  const lang = assertLocale(langParam);
   const dictionary = getDictionary(lang);
 
   return {
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ActivitiesPage({ params }: PageProps) {
   const { lang: langParam } = await params;
-  const lang = langParam as Locale;
+  const lang = assertLocale(langParam);
   const dictionary = getDictionary(lang);
 
   const cards = [
@@ -37,16 +37,16 @@ export default async function ActivitiesPage({ params }: PageProps) {
       title: dictionary.activitiesPage.cards[0].title,
       description: dictionary.activitiesPage.cards[0].description,
       href: localePath(lang, "/archive?filter=charla"),
-      iconClassName: "text-cyan-300",
-      iconBgClass: "bg-cyan-500/10"
+      iconClassName: "text-brandCyan",
+      iconBgClass: "bg-brandCyan/10"
     },
     {
       icon: Building2,
       title: dictionary.activitiesPage.cards[1].title,
       description: dictionary.activitiesPage.cards[1].description,
       href: localePath(lang, "/archive?filter=visita"),
-      iconClassName: "text-pink-300",
-      iconBgClass: "bg-pink-500/10"
+      iconClassName: "text-brandMagenta",
+      iconBgClass: "bg-brandMagenta/10"
     },
     {
       icon: GraduationCap,
@@ -61,8 +61,8 @@ export default async function ActivitiesPage({ params }: PageProps) {
       title: dictionary.activitiesPage.cards[3].title,
       description: dictionary.activitiesPage.cards[3].description,
       href: localePath(lang, "/archive?filter=competencia"),
-      iconClassName: "text-amber-300",
-      iconBgClass: "bg-amber-500/10"
+      iconClassName: "text-brandOrange",
+      iconBgClass: "bg-brandOrange/10"
     }
   ];
 
