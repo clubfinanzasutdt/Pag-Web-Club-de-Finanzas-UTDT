@@ -23,14 +23,14 @@ export default function LanguageSwitcher({
   };
 
   return (
-    <div className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900 p-1 text-sm font-medium">
+    <div className="inline-flex items-center rounded-md border border-line bg-surface p-1 text-sm font-medium">
       {(["es", "en"] as const).map((locale) => (
         <Link
           key={locale}
           href={buildHref(locale)}
-          className={`rounded-full px-3 py-1.5 ${
+          className={`rounded px-3 py-1.5 ${
             currentLang === locale
-              ? "bg-white text-black"
+              ? "bg-white text-ink"
               : "text-zinc-400 hover:text-white"
           }`}
         >

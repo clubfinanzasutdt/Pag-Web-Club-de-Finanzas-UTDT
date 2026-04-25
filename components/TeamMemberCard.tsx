@@ -24,8 +24,8 @@ export default function TeamMemberCard({
   const titleClass = size === "lead" ? "text-xl" : "text-lg";
 
   return (
-    <article className="glass-card overflow-hidden">
-      <div className={`relative ${imageHeight} border-b border-white/10 bg-zinc-950/80`}>
+    <article className="surface-card overflow-hidden hover:border-brandCyan/35">
+      <div className={`relative ${imageHeight} border-b border-line bg-background/80`}>
         {hasProfileImage ? (
           <Image
             src={member.image}
@@ -49,8 +49,8 @@ export default function TeamMemberCard({
           <a
             href={member.linkedin}
             target="_blank"
-            rel="noreferrer"
-            className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-brandCyan hover:text-brandCyan/80"
+            rel="noopener noreferrer"
+            className="mt-5 inline-flex items-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-medium text-brandCyan hover:border-brandCyan/50"
           >
             <Linkedin className="h-4 w-4" />
             LinkedIn

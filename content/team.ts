@@ -10,8 +10,7 @@ export const teamMembers: TeamMember[] = [
     },
     image: "/images/team/joaquin-elbaum-feldman.jpeg",
     tier: "lead",
-    linkedin:
-      "https://www.linkedin.com/in/joaquin-elbaum-feldman?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+    linkedin: "https://www.linkedin.com/in/joaquin-elbaum-feldman"
   },
   {
     id: "santiago-funes",
@@ -34,8 +33,7 @@ export const teamMembers: TeamMember[] = [
     },
     image: "/images/team-placeholder.svg",
     tier: "director",
-    linkedin:
-      "https://www.linkedin.com/in/santiparodi?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+    linkedin: "https://www.linkedin.com/in/santiparodi"
   },
   {
     id: "sofia-bishop",

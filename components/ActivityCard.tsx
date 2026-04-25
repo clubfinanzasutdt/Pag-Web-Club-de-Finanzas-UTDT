@@ -21,20 +21,21 @@ export default function ActivityCard({
   return (
     <Link
       href={href}
-      className="group glass-card flex h-full flex-col p-7 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900"
+      className="group surface-card flex h-full flex-col p-6 hover:border-brandOrange/45 hover:bg-surfaceElevated"
       aria-label={title}
     >
       <div
-        className={`mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl ${iconBgClass}`}
+        className={`mb-5 inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/10 ${iconBgClass}`}
       >
-        <Icon className={`h-6 w-6 ${iconClassName}`} />
+        <Icon className={`h-5 w-5 ${iconClassName}`} />
       </div>
 
-      <h3 className="text-xl font-semibold text-white">{title}</h3>
-      <p className="mt-3 flex-1 text-sm leading-7 text-zinc-400">{description}</p>
+      <h3 className="text-lg font-semibold text-white">{title}</h3>
+      <p className="mt-3 flex-1 text-sm leading-6 text-zinc-400">{description}</p>
 
-      <div className="mt-6 inline-flex items-center text-sm font-semibold text-zinc-300 group-hover:text-white">
-        <ArrowRight className="mr-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+      <div className="mt-6 inline-flex items-center text-sm font-semibold text-brandOrange">
+        <span className="sr-only">{title}</span>
+        <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
       </div>
     </Link>
   );
