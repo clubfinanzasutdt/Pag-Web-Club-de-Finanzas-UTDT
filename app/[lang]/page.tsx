@@ -77,7 +77,7 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <>
-      <HeroSection lang={lang} dictionary={dictionary} />
+      <HeroSection lang={lang} dictionary={dictionary} featuredActivity={featuredEvents[0]} />
       <CredibilityStrip dictionary={dictionary} />
 
       <section className="section-shell">
